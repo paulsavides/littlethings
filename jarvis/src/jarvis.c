@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "manuel.h"
+#include "jarvis.h"
 
 #define true 1
 #define false 0
@@ -29,7 +29,7 @@ int main (int argc, char** argv)
 
 void init()
 {
-  num_comms = get_num_lines("manuel.conf");
+  num_comms = get_num_lines("jarvis.conf");
 
   comm_prompt = malloc(num_comms * sizeof(char*));
   comm_action = malloc(num_comms * sizeof(char*));
@@ -43,7 +43,7 @@ void init()
     memset(comm_action[i], '\0', comm_lim);
   }
 
-  read_comms("manuel.conf");
+  read_comms("jarvis.conf");
 
 }
 
