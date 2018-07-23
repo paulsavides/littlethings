@@ -1,7 +1,14 @@
 #include <stdio.h>
-#include <windows.h> // needed for Sleep() (unistd.h on *nix)
 #include <stdlib.h>
+#include <string.h>
 #include "printer.h"
+
+// portable
+#ifdef __unix__
+# include <unistd.h>
+#elif defined _WIN32
+# include <windows.h>
+#endif
 
 int main(int argc, char** argv)
 {
@@ -71,7 +78,7 @@ void print_it(char* word, int lim, int sleep)
 
     i = up ? i+1 : i-1;
 
-    Sleep(sleep);
+    msleep(sleep);
   }
 }
 
@@ -94,4 +101,14 @@ void zero_char_arr(int size, char* arr)
   {
     *(arr++) = '\0'; // okay
   }
+}
+
+// ty to this friend http://www.cplusplus.com/forum/unices/60161/
+void msleep(int milliseconds)
+{
+  #ifdef __WIN32__
+  Sleep(milliseconds);
+  #else
+  usleep((milliseconds)*1000);
+  #endif
 }

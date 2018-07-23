@@ -17,6 +17,9 @@ const char* DEF_WORD    = "printer";
 // forward decs
 int process(int argc, char** argv);
 void print_help();
-void zero_char_arr(int size, char* arr);
 
 void print_it(char* word, int lim, int sleep);
+
+// utils
+void zero_char_arr(int size, char* arr);
+void msleep(int milliseconds);
